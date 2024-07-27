@@ -1,0 +1,159 @@
+@import "global";
+@import "header";
+
+/* Styles */
+#job-title {
+    font-family: $job-font;
+    position: relative;
+    z-index: 0;
+    margin-top: 2rem;
+    transform: translateY(-12px);
+    background-color: transparent;
+    max-width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    font-weight: 900;
+    font-size: clamp(52px, 8vw, 98px);
+    display: inline-flex;
+    padding: 4rem 5rem;
+    overflow: hidden;
+    text-shadow: 1px 1px 1px rgba($dark, 0.85);
+    box-sizing: border-box;
+    &::after{
+        content: "Depuis 2010";
+        position: absolute;
+        font-family: $main-font;
+        background-color: var(--text-color);
+        color: var(--background-color);
+        padding: 25px 80px;
+        font-size: 0.8125rem;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        font-style: italic;
+        font-weight: 400;
+        text-shadow: none;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        top: 0; 
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(80deg, #fff 0%, #e0c1e3 50%, #a661b5 100%);
+        filter: blur(185px);
+        opacity: 0.5;
+        
+    }
+}
+
+#border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0px solid transparent;
+    box-sizing: border-box;
+    max-width: 100%;
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0);
+    overflow: hidden;
+}
+
+.flowers {
+    top: 5vh;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 320px;
+    &#flower-left {
+        left: 14%;
+    }
+    &#flower-right {
+        right: 14%;
+        top: 18vh;
+        transform-origin: center center;
+        transform: rotate(90deg);
+        max-width: 270px;
+    }
+}
+
+#btn-demo {
+    opacity: 0;
+    visibility: hidden;
+}
+
+section#hero-section {
+    overflow-x: hidden;
+    min-height: calc(100vh - var(--header-height));
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+.flowers {
+    transition: left 1s 0.012s cubic-bezier(.63,.02,.68,.63), top 0.68s 0.013s cubic-bezier(0,.75,.84,.85);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 100%; /* Aspect ratio of 1:1 (1080/1080 = 1) */
+    height: 0;
+    overflow: hidden;
+    display: none;
+    max-height: 760px;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+#demo-vid {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    z-index: 100;
+    max-width: 712px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transform: translateX(-50%);
+    max-height: 712px;
+    object-fit: contain;
+    border: 8px solid rgba(var(--color), 0.65);
+    box-shadow: 0 0 27px 1px rgba(#010101, 0.65);
+}
+
+  body.light-mode {
+    #job-title {
+        text-shadow: 1px 1px 1px rgba($light, 0.85);
+    }
+  }
+
+@media screen and (max-width: 991.98px){
+    .flowers {
+        max-width: 300px;
+    }
+    #demo-vid{
+        max-width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        transform: translateX(0);
+    }
+}
+@media screen and (min-width: 1200px){
+    #job-title {
+        margin-top: 3.8rem;
+    }
+}

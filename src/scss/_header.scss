@@ -1,0 +1,57 @@
+@import "logo";
+
+/* Header styles */
+#main-logo-title-container {
+    position: relative;
+    padding-top: 1.8rem;
+    text-transform: uppercase;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--header-height);
+}
+
+#first-name, #last-name {
+    position: relative;
+    display: inline-flex;
+    letter-spacing: 6px;
+    font-size: 0.8125rem;
+    opacity: 0;
+}
+
+#trait-left, #trait-right {
+    position: absolute;
+    height: 1px;
+    background-color: $border-color;
+}
+
+#trait-left {
+    left: -100px;
+    top: 49%;
+}
+#trait-right {
+    right: -100px;
+    top: 49%;
+}
+
+@media screen and (max-width: 767.98px){
+    #trait-left, #trait-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575.98px){
+    
+    #logo {
+        width: 72px;
+        height: 72px;
+    }
+    #first-name, #last-name {
+        letter-spacing: 0;
+        font-size: 13px;
+    }
+    #main-logo-title-container {
+        --header-height: 81px;
+    }
+}

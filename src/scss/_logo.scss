@@ -1,0 +1,52 @@
+/* Logo styles */
+#logo {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    
+    #black-rect-1, #black-rect-2 {
+        position: relative;
+        transform-origin: center center;
+    }
+    #black-rect-1 {
+        animation: turn linear 70s infinite;
+    }
+    #black-rect-2 {
+        animation: turn linear 70s 2s infinite reverse;
+    }
+    #over-dark-rect {
+        opacity: 1;
+        animation: disepear linear 20s infinite alternate;
+    }
+    #logo-e, #logo-l {
+        animation: darker linear 8s infinite alternate;
+    }
+}   
+
+@keyframes turn {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes disepear {
+    to {
+        opacity: 0;
+    }
+}
+@keyframes darker {
+    to {
+        fill: $dark-gray;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    $dark-gray: #0f0f0f;
+    #black-rect-1, #black-rect-2 {
+        fill: $dark-gray;
+        position: relative;
+        transform-origin: center center;
+    }
+}

@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.theme-switch-wrapper {
+    position: absolute;
+    top: 53px;
+    right: 68px;
+    display: flex;
+    align-items: center;
+    z-index: 1; /* Ensure it's above other content */
+}
+
+.theme-icon {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    transition: transform 0.2s 0.05s ease, opacity 0.345s ease; /* Smooth transition for position and opacity change */
+    z-index: 2; /* Ensure icons are above the switch circle */
+}
+
+#light-icon {
+    left: -26px; /* Position to the left of the switch */
+    transform: translateX(0);
+    opacity: 1;
+}
+
+#dark-icon {
+    left: -26px; /* Position to the left of the switch */
+    transform: translateX(30px); /* Initially hide the dark icon */
+    opacity: 0;
+}
+
+.theme-switch {
+    display: none;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    position: relative;
+    transition: background-color 0.3s;
+    z-index: 1; /* Ensure label is below the icons */
+}
+
+.switch-label .switch-circle {
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+    z-index: 1; /* Ensure the circle is below the icons */
+}
+
+.theme-switch:checked + .switch-label {
+    background-color: #555;
+}
+
+.theme-switch:checked + .switch-label .switch-circle {
+    transform: translateX(25px);
+    background-color: #fff;
+}
+
+.theme-switch:checked + .switch-label #light-icon {
+    transform: translateX(-30px); /* Move light icon out of view */
+    opacity: 0;
+}
+
+.theme-switch:checked + .switch-label #dark-icon {
+    transform: translateX(0); /* Move dark icon into view */
+    opacity: 1;
+}
+
+@media screen and (prefers-color-scheme: light) {
+    #dark-icon {
+        opacity: 0;
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    #light-icon {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 1199.98px) {
+    .theme-switch-wrapper {
+        display: none;
+    }
+}

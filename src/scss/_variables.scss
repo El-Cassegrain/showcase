@@ -1,0 +1,37 @@
+/* Variables */
+$primary: #F05A19;
+$dark: #343435;
+$dark-gray: #343435;
+$secondary: #FAB98A;
+$light: white;
+$success: #43F07E;
+$warning: #F0DF43;
+$info: #a661b5;
+$danger: #FA5353;
+$border-color: #DCDCDC;
+
+$btn-border-radius: 4px;
+
+//fonts
+$main-font: "Open Sans", sans-serif;
+$menu-font: "Oswald", sans-serif;
+$funcky-font: "Bangers", system-ui;
+$job-font: "Great Vibes", cursive;
+
+// Custom variables for light theme
+$body-bg-light: #ffffff;
+$body-color-light: #343435;
+$primary-color-light: #F05A19;
+
+// Default theme (assuming light theme as default)
+$body-bg: $body-bg-light;
+$body-color: $body-color-light;
+$primary: $primary-color-light;
+
+:root {
+    --background-color: $dark;
+    --border-color: $border-color;
+    --text-color: $dark;
+    --hero-gradient: linear-gradient(80deg, #fff 0%, #e0c1e3 50%, #a661b5 100%);
+    --header-height: 116px;
+}

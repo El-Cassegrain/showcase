@@ -1,0 +1,97 @@
+@import "variables";
+@import "mixins";
+@import "switch-theme";
+
+/* Then import Bootstrap */
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Global styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: $main-font;
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.btn {
+  @include btn;
+}
+
+// Apply dark theme based on media query
+@media (prefers-color-scheme: dark) {
+  // Custom variables for dark theme
+  $body-bg-dark: #343435;
+  $body-color-dark: #ffffff;
+  $body-bg: $body-bg-dark;
+  $body-color: $body-color-dark;
+  $dark: $light;
+  $light: $dark;
+  $dark-gray: #0f0f0f;
+  $primary: #fab98a;
+
+  body {
+    background-color: $body-bg;
+    color: $body-color;
+  }
+  .btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+  }
+  .flowers {
+    filter: grayscale(28%);
+  }
+  h1#job-title {
+    color: var(--text-color);
+    text-shadow: 1px 1px 1px rgba($light, 0.88);
+    &::before {
+      background-blend-mode: multiply;
+    }
+  }
+}
+
+body.light-mode {
+  background-color: $body-bg-light;
+  color: $body-color-light;
+}
+
+body.dark-mode {
+  // Custom variables for dark theme
+  $body-bg-dark: #343435;
+  $body-color-dark: #ffffff;
+  $body-bg: $body-bg-dark;
+  $body-color: $body-color-dark;
+  $dark: $light;
+  $light: $dark;
+  $dark-gray: #0f0f0f;
+  $primary: #fab98a;
+
+  body {
+    background-color: $body-bg;
+    color: $body-color;
+  }
+  .btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+  }
+  .flowers {
+    filter: grayscale(28%);
+  }
+  h1#job-title {
+    color: var(--text-color);
+    text-shadow: 1px 1px 1px rgba(#000, 0.88);
+    &::before {
+      background-blend-mode: multiply;
+    }
+  }
+}
+
+// Apply light theme based on media query for prefers-color-scheme: light
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: $body-bg-light;
+    color: $body-color-light;
+  }
+}
