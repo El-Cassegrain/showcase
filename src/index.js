@@ -83,54 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const flowerLeft = document.querySelector("#flower-left");
-const flowerRight = document.querySelector("#flower-right");
-const slogan = document.querySelector("h1#job-title");
-const heroSection = document.querySelector("#hero-section");
-const demoVid = document.querySelector("#demo-vid");
-const demoBtn = document.querySelector("#btn-demo");
-const demoVidContainer = document.querySelector(".video-container");
-
-let isPlaying = false;
-
-demoBtn.addEventListener("click", () => {
-  gsap.to(slogan, { autoAlpha: 0, y: -85, duration: 1.35 });
-  setInterval(() => {
-    demoVidContainer.style.display = "block";
-  }, 300);
-  document.body.classList.add("no-scroll");
-  gsap.to(demoVidContainer, { autoAlpha: 1, duration: 1.8, y: 0 }, "-=1");
-
-  demoVid.style.display = "block";
-  gsap.to(demoVid, {
-    autoAlpha: 1,
-    y: 0,
-    delay: 0.5,
-  });
-  gsap.to(".flowers", { y: "24px", filter: "grayscale(80%)", duration: 1 });
-  demoVid.play();
-  isPlaying = true;
-  demoVidContainer.classList.remove("d-none");
-  heroSection.classList.add("no-scroll");
-
-});
-
-demoVid.addEventListener("ended", () => {
-  isPlaying = false;
-  gsap.to(demoVid, {
-    autoAlpha: 0,
-    delay: 0.5,
-  });
-  demoVid.style.display = "none";
-  demoVidContainer.classList.add("d-none");
-  gsap.to(".flowers", { y: 0, filter: "grayscale(0)", duration: 1 });
-  gsap.to(slogan, { autoAlpha: 1, y: 0, duration: 0.55 });
-  document.body.classList.remove("no-scroll");
-    heroSection.classList.add("no-scroll");
-
-
-});
-
 document.addEventListener("mousemove", (e) => {
   if (isPlaying) return;
 
@@ -162,4 +114,111 @@ document.addEventListener("mousemove", (e) => {
   flowerRight.style.transform = `translate(${xOffset * 1}px, ${
     yOffset * -1.15
   }px)`;
+});
+
+const flowerLeft = document.querySelector("#flower-left");
+const flowerRight = document.querySelector("#flower-right");
+const slogan = document.querySelector("h1#job-title");
+const heroSection = document.querySelector("#hero-section");
+const demoVid = document.querySelector("#demo-vid");
+const demoBtn = document.querySelector("#btn-demo");
+const demoVidContainer = document.querySelector(".video-container");
+const closeBtn = document.getElementById('close-demo-btn');
+
+let isPlaying = false;
+
+demoBtn.addEventListener("click", () => {
+  gsap.to(slogan, { autoAlpha: 0, y: -85, duration: 1.35 });
+  setInterval(() => {
+    demoVidContainer.style.display = "block";
+  }, 300);
+  document.body.classList.add("no-scroll");
+  gsap.to(demoVidContainer, { autoAlpha: 1, duration: 1.8, y: 0 }, "-=1");
+
+  demoVid.style.display = "block";
+  gsap.to(demoVid, {
+    autoAlpha: 1,
+    y: 0,
+    delay: 0.5,
+  });
+  gsap.to(".flowers", { y: "24px", filter: "grayscale(80%)", duration: 1 });
+  demoVid.play();
+  isPlaying = true;
+  demoVidContainer.classList.remove("d-none");
+  heroSection.classList.add("no-scroll");
+  gsap.to(closeBtn, {autoAlpha: 1, duration: 2})
+
+  //Reverse
+  gsap.to('#logo', { scale: 0.92, autoAlpha: 0 });
+    gsap.to('#trait-left', { width: '0%', x: -70, duration: 2 });
+    gsap.to('#trait-right', { width: '0%', x: 70, duration: 2 });
+    gsap.to('#first-name', { opacity: 0, x: 0, duration: 1});
+    gsap.to('#last-name', { opacity: 0, x: 0, duration: 1});
+});
+
+demoVid.addEventListener("ended", () => {
+  isPlaying = false;
+  gsap.to(demoVid, {
+    autoAlpha: 0,
+    delay: 0.5,
+  });
+  demoVid.style.display = "none";
+  demoVidContainer.classList.add("d-none");
+  gsap.to(".flowers", { y: 0, filter: "grayscale(0)", duration: 1 });
+  gsap.to(slogan, { autoAlpha: 1, y: 0, duration: 0.55 });
+  document.body.classList.remove("no-scroll");
+    heroSection.classList.add("no-scroll");
+    gsap.to('#logo', { duration: 3, autoAlpha: 1, scale: 1, width: 90 });
+    gsap.to('#trait-left', { duration: 2.6, width: '137px', x: -70 }, '-=3.2');
+    gsap.to('#trait-right', { duration: 2.6, width: '137px', x: 70 }, "-=3.2");
+    gsap.to('#first-name', { duration: 1, opacity: 1, x: -42 });
+    gsap.to('#last-name', { duration: 1, opacity: 1, x: 42 });
+    gsap.to("#border", {
+      duration: 1,
+      clipPath: "polygon(0 100%, 0 0, 18% 0, 48% 0, 73% 0, 100% 0, 100% 10%, 100% 65%, 100% 100%, 89% 100%, 65% 100%, 0 100%)",
+      borderWidth: "8px",
+      borderColor: "var(--border-color)",
+      ease: "power2.inOut"
+    }, "-=3");
+
+});
+
+// Show close button when video starts playing
+demoVid.addEventListener('play', () => {
+  closeBtn.style.display = 'inline-block';
+});
+
+// Hide close button when video ends
+demoVid.addEventListener('ended', () => {
+  closeBtn.style.display = 'none';
+});
+
+// Hide close button and pause video when close button is clicked
+closeBtn.addEventListener('click', () => {
+isPlaying = false;
+gsap.to(demoVid, {
+  autoAlpha: 0,
+  delay: 0.5,
+});
+demoVid.pause();
+gsap.to(closeBtn, {autoAlpha: 0, y: 8, duration: 1})
+demoVid.style.display = "none";
+demoVidContainer.classList.add("d-none");
+gsap.to(".flowers", { y: 0, filter: "grayscale(0)", duration: 1 });
+gsap.to(slogan, { autoAlpha: 1, y: 0, duration: 0.55 });
+document.body.classList.remove("no-scroll");
+heroSection.classList.add("no-scroll");
+gsap.to('#logo', { duration: 3, autoAlpha: 1, width: 90, scale: 1, });
+    gsap.to('#trait-left', { duration: 2.6, width: '137px', x: -70 }, '-=3.2');
+    gsap.to('#trait-right', { duration: 2.6, width: '137px', x: 70 }, "-=3.2");
+    gsap.to('#first-name', { duration: 1, opacity: 1, x: -42 });
+    gsap.to('#last-name', { duration: 1, opacity: 1, x: 42 });
+    gsap.to("#border", {
+      duration: 1,
+      clipPath: "polygon(0 100%, 0 0, 18% 0, 48% 0, 73% 0, 100% 0, 100% 10%, 100% 65%, 100% 100%, 89% 100%, 65% 100%, 0 100%)",
+      borderWidth: "8px",
+      borderColor: "var(--border-color)",
+      ease: "power2.inOut"
+    }, "-=3");
+    demoBtn.innerHTML = "Revoir";
 });

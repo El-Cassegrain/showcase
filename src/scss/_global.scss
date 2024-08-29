@@ -55,10 +55,16 @@ body {
 body.light-mode {
   background-color: $body-bg-light;
   color: $body-color-light;
+  a {
+    color: #842aa8;
+  }
 }
 
 body.dark-mode {
   // Custom variables for dark theme
+  a {
+    color: #fff;
+  }
   $body-bg-dark: #343435;
   $body-color-dark: #ffffff;
   $body-bg: $body-bg-dark;
@@ -85,6 +91,19 @@ body.dark-mode {
     &::before {
       background-blend-mode: multiply;
     }
+  }
+}
+
+#kas-link {
+  font-weight: medium;
+  position: relative;
+  display: inline-flex;
+  margin-left: 28px;
+  &::before {
+    content: "🐺";
+    position: absolute;
+    left: -23px;
+    text-decoration: none !important;
   }
 }
 

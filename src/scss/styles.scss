@@ -13,9 +13,9 @@
     opacity: 0;
     visibility: hidden;
     font-weight: 900;
-    font-size: clamp(52px, 8vw, 98px);
+    font-size: clamp(52px, 8vw, 103px);
     display: inline-flex;
-    padding: 4rem 5rem;
+    padding: 4rem 3rem 4rem 5.5rem;
     overflow: hidden;
     text-shadow: 1px 1px 1px rgba($dark, 0.85);
     box-sizing: border-box;
@@ -23,8 +23,7 @@
         content: "Depuis 2010";
         position: absolute;
         font-family: $main-font;
-        background-color: var(--text-color);
-        color: var(--background-color);
+        color: var(--color);
         padding: 25px 80px;
         font-size: 0.8125rem;
         left: 50%;
@@ -88,8 +87,10 @@
 }
 
 section#hero-section {
+    position: fixed;
     overflow-x: hidden;
     min-height: calc(100vh - var(--header-height));
+    top: 0;
     &.no-scroll {
         overflow: hidden;
     }
@@ -102,15 +103,16 @@ section#hero-section {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 760px;
+    max-width: 720px;
     margin: 0 auto;
     padding-bottom: 100%; /* Aspect ratio of 1:1 (1080/1080 = 1) */
     height: 0;
     overflow: hidden;
     display: none;
-    max-height: 760px;
+    max-height: 720px;
     opacity: 0;
     visibility: hidden;
+    z-index: 99;
   }
 
 #demo-vid {
@@ -120,15 +122,14 @@ section#hero-section {
     position: absolute;
     left: 50%;
     z-index: 100;
-    max-width: 712px;
+    max-width: 720px;
     width: 100%;
     height: 100%;
     top: 0;
-    transform: translateX(-50%);
-    max-height: 712px;
+    transform: translateX(-50%) translateY(62px);
+    max-height: 720px;
     object-fit: contain;
     border: 8px solid rgba(var(--color), 0.65);
-    box-shadow: 0 0 27px 1px rgba(#010101, 0.65);
 }
 
   body.light-mode {
@@ -152,8 +153,36 @@ section#hero-section {
         transform: translateX(0);
     }
 }
-@media screen and (min-width: 1200px){
+
+@media screen and (max-width: 1399.98px){
+    h1#job-title {
+        font-size: clamp(52px, 8vw, 63px);
+    }
+    .video-container {
+        max-width: 550px;
+    }
+}
+
+@media screen and (min-width: 1400px){
     #job-title {
         margin-top: 3.8rem;
     }
+}
+
+#copyright-section {
+    display: inline-flex;
+    position: fixed;
+    bottom: 12px;
+    right: 22px;
+}
+
+#btn-close-container {
+    z-index: 200;
+}
+
+#close-demo-btn {
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 45px;
+    
 }
