@@ -124,6 +124,7 @@ const demoVid = document.querySelector("#demo-vid");
 const demoBtn = document.querySelector("#btn-demo");
 const demoVidContainer = document.querySelector(".video-container");
 const closeBtn = document.getElementById('close-demo-btn');
+const myHeader = document.getElementById('main-header')
 
 let isPlaying = false;
 
@@ -154,6 +155,7 @@ demoBtn.addEventListener("click", () => {
     gsap.to('#trait-right', { width: '0%', x: 70, duration: 2 });
     gsap.to('#first-name', { opacity: 0, x: 0, duration: 1});
     gsap.to('#last-name', { opacity: 0, x: 0, duration: 1});
+    gsap.to(myHeader, {display:"none"})
 });
 
 demoVid.addEventListener("ended", () => {
