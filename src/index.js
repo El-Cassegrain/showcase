@@ -155,11 +155,12 @@ demoBtn.addEventListener("click", () => {
     gsap.to('#trait-right', { width: '0%', x: 70, duration: 2 });
     gsap.to('#first-name', { opacity: 0, x: 0, duration: 1});
     gsap.to('#last-name', { opacity: 0, x: 0, duration: 1});
-    gsap.to(myHeader, {display:"none"})
+    gsap.to(myHeader, {display:"none", delay: 0.15})
 });
 
 demoVid.addEventListener("ended", () => {
   isPlaying = false;
+  gsap.to(myHeader, {display:"block"})
   gsap.to(demoVid, {
     autoAlpha: 0,
     delay: 0.5,
@@ -223,4 +224,5 @@ gsap.to('#logo', { duration: 3, autoAlpha: 1, width: 90, scale: 1, });
       ease: "power2.inOut"
     }, "-=3");
     demoBtn.innerHTML = "Revoir";
+    gsap.to(myHeader, {display:"block", delay: 0.13})
 });
